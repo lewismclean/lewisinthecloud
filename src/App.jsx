@@ -10,6 +10,12 @@ function App() {
           <span className="cloud">Cloud</span>
         </h1>
         <p className="tagline">Azure Infrastructure Engineer</p>
+        <div className="skills">
+          <span className="skill">Azure</span>
+          <span className="skill">Infrastructure as Code</span>
+          <span className="skill">DevOps</span>
+          <span className="skill">Cloud Architecture</span>
+        </div>
       </main>
       <footer>
         <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
