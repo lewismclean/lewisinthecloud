@@ -15,6 +15,7 @@ function App() {
           <span className="skill">Infrastructure as Code</span>
           <span className="skill">DevOps</span>
           <span className="skill">Cloud Architecture</span>
+          <span className="skill">Platform Engineering</span>
         </div>
       </main>
       <footer>
