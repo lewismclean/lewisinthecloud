@@ -18,9 +18,8 @@ function App() {
         </div>
       </main>
       <footer>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:your.email@example.com">Email</a>
+        <a href="https://github.com/lewismclean" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/lewismcleanin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </footer>
     </div>
   );
