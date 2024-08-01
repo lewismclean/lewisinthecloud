@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+:root {
+  --primary-dark: #0a0e17;
+  --primary-light: #1e2837;
+  --accent: #4a90e2;
+  --text-light: #ffffff;
+  --text-dark: #a0a0a0;
+}
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #0A1B2A 0%, #0E2A43 100%);
-  color: #ffffff;
+  background-color: var(--primary-dark);
+  color: var(--text-light);
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -21,19 +29,76 @@ body, html {
   padding: 1rem;
   box-sizing: border-box;
   text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.app.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@keyframes move-twink-back {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+  from {background-position: 0 0;}
+  to {background-position: 10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  z-index: 1;
+  animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+  background: transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top center;
+  z-index: 2;
+  opacity: .4;
+  animation: move-clouds-back 200s linear infinite;
 }
 
 main {
   max-width: 600px;
   width: 100%;
+  position: relative;
+  z-index: 3;
 }
 
 h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
-  opacity: 0;
-  animation: fadeIn 1.5s ease-out forwards;
 }
 
 .name, .in, .cloud {
@@ -51,7 +116,7 @@ h1 {
 
 .cloud {
   font-weight: 400;
-  background: linear-gradient(90deg, #0078D4 0%, #50E6FF 100%);
+  background: linear-gradient(90deg, var(--accent) 0%, #50E6FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -61,8 +126,7 @@ h1 {
 .tagline {
   font-size: 1.4rem;
   margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeIn 1.5s ease-out 0.5s forwards;
+  color: var(--text-dark);
 }
 
 .skills {
@@ -74,23 +138,32 @@ h1 {
 }
 
 .skill {
-  background-color: rgba(0, 120, 212, 0.2);
-  color: #ffffff;
+  background-color: var(--primary-light);
+  color: var(--accent);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-  animation: fadeIn 0.5s ease-out forwards;
+  transition: all 0.3s ease;
   opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 
-.skill:nth-child(1) { animation-delay: 1s; }
-.skill:nth-child(2) { animation-delay: 1.2s; }
-.skill:nth-child(3) { animation-delay: 1.4s; }
-.skill:nth-child(4) { animation-delay: 1.6s; }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .skill:hover {
-  background-color: rgba(0, 120, 212, 0.4);
+  background-color: var(--accent);
+  color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
 }
 
 footer {
@@ -100,21 +173,15 @@ footer {
 }
 
 footer a {
-  color: #ffffff;
+  color: var(--text-dark);
   text-decoration: none;
   font-size: 1.1rem;
-  opacity: 0.7;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 footer a:hover {
-  opacity: 1;
+  color: var(--accent);
   transform: translateY(-2px);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 600px) {

@@ -1,8 +1,35 @@
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 
-function App() {
+const SkillBadge = ({ skill, index }) => {
   return (
-    <div className="app">
+    <span className="skill" style={{animationDelay: `${index * 0.1 + 0.5}s`}}>
+      {skill}
+    </span>
+  );
+};
+
+SkillBadge.propTypes = {
+  skill: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired
+};
+
+function App() {
+  const [isVisible, setIsVisible] = useState(false);
+  const skills = ['Azure', 'Infrastructure as Code', 'DevOps', 'Cloud Architecture', 'Platform Engineering'];
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  return (
+    <div className={`app ${isVisible ? 'visible' : ''}`}>
+      <div className="background">
+        <div className="stars"></div>
+        <div className="twinkling"></div>
+        <div className="clouds"></div>
+      </div>
       <main>
         <h1>
           <span className="name">Lewis</span>
@@ -11,11 +38,9 @@ function App() {
         </h1>
         <p className="tagline">Azure Infrastructure Engineer</p>
         <div className="skills">
-          <span className="skill">Azure</span>
-          <span className="skill">Infrastructure as Code</span>
-          <span className="skill">DevOps</span>
-          <span className="skill">Cloud Architecture</span>
-          <span className="skill">Platform Engineering</span>
+          {skills.map((skill, index) => (
+            <SkillBadge key={index} skill={skill} index={index} />
+          ))}
         </div>
       </main>
       <footer>
